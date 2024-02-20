@@ -267,8 +267,18 @@ Resources:
           mkdir appJava
           cd appJava
 
-          git clone
+          apt install gradle -y
 
+          git clone https://github.com/CrisDelgado99/daWeb.git
+
+          cd daWeb/springholamundo
+
+          chmod +x gradlew
+          
+          sudo ./gradlew build
+          sudo ./gradlew war
+
+          mv /tmp/appJava/daWeb/springholamundo/build/libs/holamundo-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/holamundo.war
 
           # Esta tiene que serla ultima instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
