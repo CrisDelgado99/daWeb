@@ -260,6 +260,16 @@ Resources:
           # Mensaje de éxito:
           echo "Se ha completado la instalación. Puedes acceder a tomcat usando el siguiente enlace:"
           echo "http://your_server_ip:8080"
+
+          #Despliego la app para compilarla
+          cd /tmp
+
+          mkdir appJava
+          cd appJava
+
+          git clone
+
+
           # Esta tiene que serla ultima instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
       Tags:
