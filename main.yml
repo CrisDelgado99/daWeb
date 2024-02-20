@@ -1,0 +1,32 @@
+#Esta es la versión para la tarea 3.
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Plantilla para crear grupo de seguridad"
+Resources:
+  ApplicationServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Grupo de Seguridad para el puerto 8080
+      GroupName: AppServerSecurityGroup
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+
+#Una vez hecho el grupo de seguridad, aquí empieza la instancia
+  MiInstanciaEc2Tomcat:
+    Type: AWS::EC2::Instance
+    Properties:
+      Tags:
+        -Key: Name
+        Value: MiInstanciaEc2Tomcat
+      ImageId: ami-06aa3f7caf3a30282
+      InstanceType: t2.micro
+      KeyName: vockey
+      SecurityGroupIds:
+        -Ref: ApplicationServerSecurityGroup
